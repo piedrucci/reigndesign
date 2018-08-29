@@ -1,18 +1,20 @@
-<div>
-  <h1>HN Feed</h1>
-  <p>We 3 hacker news!</p>
+<div class="container">
+  <div class="hero">
+    <h1>HN Feed</h1>
+    <h5>We 3 hacker news!</h5>
+  </div>
+  <mat-list>
+    <div class="row rows-container" *ngFor="let article of articles; let i = index">
+      <mat-list-item class="row" (click)="openLink(article.url)">
+        <span class="col-1 title">{{article.title}} <span class="author">- {{article.author}} -</span></span>
+        <span class="col-2 time">{{article.created_at | dateFormat}}</span>
+        <span class="col-3"><button mat-button (click)="removeArticle(article._id)"><mat-icon>delete_forever</mat-icon>
+        </button></span>
+      </mat-list-item>
+      <mat-divider *ngIf="(i+1)!==articles.length"></mat-divider>
+    </div>
+  </mat-list>
 </div>
 
-<mat-list>
-  <div class="row" *ngFor="let article of articles; let i = index">
-    <mat-list-item>
-      <span class="col-1">{{article.title}} <span class="author">- {{article.author}} -</span></span>
-      <span class="col-2">{{article.created_at | dateFormat}}</span>
-      <span class="col-3"><button mat-button (click)="removeArticle(article._id)"><mat-icon>delete_forever</mat-icon>
-      </button></span>
-    </mat-list-item>
-    <mat-divider *ngIf="(i+1)!==articles.length"></mat-divider>
-  </div>
-</mat-list>
 
 

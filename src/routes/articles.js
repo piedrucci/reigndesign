@@ -28,7 +28,8 @@ https.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs', (resp) =>
         newArticle = {
           title: (item.story_title !== null) ? item.story_title : item.title,
           created_at: item.created_at_i,
-          author: item.author
+          author: item.author,
+          url: (item.url !== null) ? item.url : item.story_url
         };
 
         db.articles.save(newArticle, (err, article) => {

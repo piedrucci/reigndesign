@@ -1,13 +1,14 @@
 .author {
   color: #999;
-  font-weight: bold
 }
 
 .col-1 {
+  cursor: pointer;
   width: 80%;
 }
 
 .col-2, col-3 {
+  cursor: pointer;
   width: 10%;
 }
 
@@ -16,7 +17,38 @@
   border: 1px #ccc;
 }
 
-.title, time {
+.row:hover {
+  background-color: #fafafa;
+}
+
+.title, .time {
   color: #333;
   font-size: 13px;
+}
+
+mat-list-item {
+  cursor: pointer;
+}
+
+.hero {
+  color: #fff;
+  font-family: 'Fredoka One', cursive;
+  background-color: #363636;
+  padding: 20px 30px 20px 30px;
+}
+
+.hero h1 {
+  font-size: 3em;
+}
+
+.hero h5 {
+  font-size: 1.2em;
+}
+
+.rows-container {
+  padding: 0 20px 0 20px;
+}
+
+.container {
+  border: 1px solid #363636;
 }
