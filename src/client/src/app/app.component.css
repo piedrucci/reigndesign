@@ -1,0 +1,22 @@
+.author {
+  color: #999;
+  font-weight: bold
+}
+
+.col-1 {
+  width: 80%;
+}
+
+.col-2, col-3 {
+  width: 10%;
+}
+
+.row {
+  background-color: #fff;
+  border: 1px #ccc;
+}
+
+.title, time {
+  color: #333;
+  font-size: 13px;
+}
