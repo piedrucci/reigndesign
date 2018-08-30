@@ -6,7 +6,7 @@
   <mat-list>
     <div class="row rows-container" *ngFor="let article of articles; let i = index">
       <mat-list-item class="row" (click)="openLink(article.url)">
-        <span class="col-1 title">{{article.title}} <span class="author">- {{article.author}} -</span></span>
+        <span class="col-1 title">{{article.title}} <span class="author">- {{article.author}} - {{i+1}}</span></span>
         <span class="col-2 time">{{article.created_at | dateFormat}}</span>
         <span class="col-3"><button mat-button (click)="removeArticle(article._id)"><mat-icon>delete_forever</mat-icon>
         </button></span>

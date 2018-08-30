@@ -362,13 +362,17 @@ var AppComponent = /** @class */ (function () {
         });
     };
     AppComponent.prototype.removeArticle = function (id) {
+        var _this = this;
         this.deleteAction = true;
-        alert(id);
+        var response = this.dataProvider.deleteArticle(id);
+        response.subscribe(function (data) {
+            _this.articles = _this.articles.filter(function (item) { return item._id !== id; });
+        });
     };
     AppComponent.prototype.openLink = function (uri) {
         if (!this.deleteAction) {
             if (uri !== null) {
-                window.open(uri, "_blank");
+                window.open(uri, '_blank');
             }
             else {
                 alert('Sorry, invalid URL, try another article');
@@ -481,6 +485,9 @@ var AppService = /** @class */ (function () {
     }
     AppService.prototype.fetchData = function () {
         return this.http.get('http://localhost:3000/api/articles');
+    };
+    AppService.prototype.deleteArticle = function (id) {
+        return this.http.delete("http://localhost:3000/api/articles/" + id);
     };
     AppService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({

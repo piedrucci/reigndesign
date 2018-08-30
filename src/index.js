@@ -3,9 +3,11 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 
+const fetchApiData = require('./server');
 const routes = require('./routes/index');
 const articleRoutes = require('./routes/articles');
 
+fetchApiData();
 app.set('port', process.env.PORT || 3000);
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');

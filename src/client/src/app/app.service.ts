@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
+@Injectable()
 export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  fetchData() {
+  getArticles() {
     return this.http.get('http://localhost:3000/api/articles');
   }
 
