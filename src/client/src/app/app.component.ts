@@ -24,7 +24,11 @@ export class AppComponent implements OnInit {
 
   removeArticle(id) {
     this.deleteAction = true;
-    alert(id);
+    // const response = this.dataProvider.deleteArticle(id);
+    // response.subscribe((data: any) => {
+      this.articles = this.articles.filter((item: Article) => item.id !== id);
+    // });
+    console.log(this.articles);
   }
 
   openLink(uri: string) {

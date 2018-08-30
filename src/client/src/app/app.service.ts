@@ -11,4 +11,8 @@ export class AppService {
   fetchData() {
     return this.http.get('http://localhost:3000/api/articles');
   }
+
+  deleteArticle(id) {
+    return this.http.delete(`http://localhost:3000/api/articles/${id}`);
+  }
 }

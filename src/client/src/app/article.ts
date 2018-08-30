@@ -3,4 +3,5 @@ export interface Article {
   title: string;
   created_at: number;
   author: string;
+  url: string;
 }
