@@ -373,8 +373,7 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         this.deleteAction = true;
         this.dialogRef = this.dialog.open(_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmDialog"], {
-            width: '250px',
-            data: { name: 'roberth', animal: 'cat' }
+            width: '300px'
         });
         this.dialogRef.afterClosed().subscribe(function (acept) {
             if (acept) {
@@ -397,15 +396,6 @@ var AppComponent = /** @class */ (function () {
             }
         }
         this.deleteAction = false;
-    };
-    AppComponent.prototype.openDialog = function () {
-        var dialogRef = this.dialog.open(_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmDialog"], {
-            width: '350px',
-            data: { name: 'roberth', animal: 'cat' }
-        });
-        dialogRef.afterClosed().subscribe(function (result) {
-            console.log('The dialog was closed', result);
-        });
     };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

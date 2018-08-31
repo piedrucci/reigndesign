@@ -36,8 +36,7 @@ export class AppComponent implements OnInit {
     this.deleteAction = true;
 
     this.dialogRef = this.dialog.open(ConfirmDialog, {
-      width: '250px',
-      data: {name: 'roberth', animal: 'cat'}
+      width: '300px'
     });
 
     this.dialogRef.afterClosed().subscribe(acept => {
@@ -62,16 +61,5 @@ export class AppComponent implements OnInit {
     }
 
     this.deleteAction = false;
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(ConfirmDialog, {
-      width: '350px',
-      data: {name: 'roberth', animal: 'cat'}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-    });
   }
 }

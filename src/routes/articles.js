@@ -3,15 +3,15 @@ const mongojs = require('mongojs');
 
 const db = mongojs('mean-db', ['articles']);
 db.on('error', function (err) {
-  console.log('database error article.js', err);
+  console.log('database error', err);
 });
 
 db.on('connect', function () {
-	console.log('database connected article.js')
+	console.log('database connected')
 })
 
 const getArticles = () => {
-  console.log('getArticles');
+  console.log('getting list of articles...');
   let response = {
     error: false,
     result: []
@@ -19,7 +19,6 @@ const getArticles = () => {
 
   return new Promise( resolve => {
     db.articles.find((err, articles) => {
-      console.log(`consegui ${articles.length} articulos`);
       response = {
         error: err,
         result: articles
