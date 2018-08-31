@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatTableModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatButtonModule, MatTableModule, MatIconModule, MatListModule,
+  MatDialogModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { ConfirmDialog } from './../dialog/dialog.component';
 import { AppService } from './app.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DateFormatPipe } from './date-format.pipe';
@@ -12,7 +14,8 @@ import { DateFormatPipe } from './date-format.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    DateFormatPipe
+    DateFormatPipe,
+    ConfirmDialog
   ],
   imports: [
     BrowserModule,
@@ -21,10 +24,12 @@ import { DateFormatPipe } from './date-format.pipe';
     MatButtonModule,
     MatIconModule,
     MatListModule,
+    MatDialogModule,
     HttpClientModule
   ],
   providers: [AppService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmDialog]
 })
 
 export class AppModule { }

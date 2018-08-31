@@ -310,7 +310,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".author {\r\n  color: #999;\r\n}\r\n\r\n.col-1 {\r\n  cursor: pointer;\r\n  width: 80%;\r\n}\r\n\r\n.col-2, col-3 {\r\n  cursor: pointer;\r\n  width: 10%;\r\n}\r\n\r\n.row {\r\n  background-color: #fff;\r\n  border: 1px #ccc;\r\n}\r\n\r\n.row:hover {\r\n  background-color: #fafafa;\r\n}\r\n\r\n.title, .time {\r\n  color: #333;\r\n  font-size: 13px;\r\n}\r\n\r\nmat-list-item {\r\n  cursor: pointer;\r\n}\r\n\r\n.hero {\r\n  color: #fff;\r\n  font-family: 'Fredoka One', cursive;\r\n  background-color: #363636;\r\n  padding: 20px 30px 20px 30px;\r\n}\r\n\r\n.hero h1 {\r\n  font-size: 3em;\r\n}\r\n\r\n.hero h5 {\r\n  font-size: 1.2em;\r\n}\r\n\r\n.rows-container {\r\n  padding: 0 20px 0 20px;\r\n}\r\n\r\n.container {\r\n  border: 1px solid #363636;\r\n}"
+module.exports = ".author {\n  color: #999;\n}\n\n.col-1 {\n  cursor: pointer;\n  width: 80%;\n}\n\n.col-2, col-3 {\n  cursor: pointer;\n  width: 10%;\n}\n\n.row {\n  background-color: #fff;\n  border: 1px #ccc;\n}\n\n.row:hover {\n  background-color: #fafafa;\n}\n\n.title, .time {\n  color: #333;\n  font-size: 13px;\n}\n\nmat-list-item {\n  cursor: pointer;\n}\n\n.hero {\n  color: #fff;\n  font-family: 'Fredoka One', cursive;\n  background-color: #363636;\n  padding: 20px 30px 20px 30px;\n}\n\n.hero h1 {\n  font-size: 3em;\n}\n\n.hero h5 {\n  font-size: 1.2em;\n}\n\n.rows-container {\n  padding: 0 20px 0 20px;\n}\n\n.container {\n  border: 1px solid #363636;\n}"
 
 /***/ }),
 
@@ -321,7 +321,7 @@ module.exports = ".author {\r\n  color: #999;\r\n}\r\n\r\n.col-1 {\r\n  cursor: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"hero\">\r\n    <h1>HN Feed</h1>\r\n    <h5>We 3 hacker news!</h5>\r\n  </div>\r\n  <mat-list>\r\n    <div class=\"row rows-container\" *ngFor=\"let article of articles; let i = index\">\r\n      <mat-list-item class=\"row\" (click)=\"openLink(article.url)\">\r\n        <span class=\"col-1 title\">{{article.title}} <span class=\"author\">- {{article.author}} -</span></span>\r\n        <span class=\"col-2 time\">{{article.created_at | dateFormat}}</span>\r\n        <span class=\"col-3\"><button mat-button (click)=\"removeArticle(article._id)\"><mat-icon>delete_forever</mat-icon>\r\n        </button></span>\r\n      </mat-list-item>\r\n      <mat-divider *ngIf=\"(i+1)!==articles.length\"></mat-divider>\r\n    </div>\r\n  </mat-list>\r\n</div>\r\n\r\n\r\n\r\n"
+module.exports = "<div class=\"container\">\n  <div class=\"hero\">\n    <h1>HN Feed</h1>\n    <h5>We &lt;3 hacker news!</h5>\n  </div>\n  <mat-list>\n    <div class=\"row rows-container\" *ngFor=\"let article of articles; let i = index\">\n      <mat-list-item class=\"row\" (click)=\"openLink(article.url)\">\n        <span class=\"col-1 title\">{{article.title}} <span class=\"author\">- {{article.author}}</span></span>\n        <span class=\"col-2 time\">{{article.created_at | dateFormat}}</span>\n        <span class=\"col-3\"><button mat-button (click)=\"removeArticle(article._id)\"><mat-icon>delete_forever</mat-icon>\n        </button></span>\n      </mat-list-item>\n      <mat-divider *ngIf=\"(i+1)!==articles.length\"></mat-divider>\n    </div>\n  </mat-list>\n</div>\n\n\n\n"
 
 /***/ }),
 
@@ -337,6 +337,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.service */ "./src/app/app.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../dialog/dialog.component */ "./src/dialog/dialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -348,25 +350,41 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
 var AppComponent = /** @class */ (function () {
-    function AppComponent(dataProvider) {
+    function AppComponent(dataProvider, dialog) {
         this.dataProvider = dataProvider;
+        this.dialog = dialog;
         this.deleteAction = false;
         this.displayedColumns = ['title', 'created_at', 'author'];
     }
     AppComponent.prototype.ngOnInit = function () {
+        this.fetchData();
+    };
+    AppComponent.prototype.fetchData = function () {
         var _this = this;
-        var response = this.dataProvider.fetchData();
+        var response = this.dataProvider.getArticles();
         response.subscribe(function (data) {
-            _this.articles = data;
+            _this.articles = data.result;
         });
     };
     AppComponent.prototype.removeArticle = function (id) {
         var _this = this;
         this.deleteAction = true;
-        var response = this.dataProvider.deleteArticle(id);
-        response.subscribe(function (data) {
-            _this.articles = _this.articles.filter(function (item) { return item._id !== id; });
+        this.dialogRef = this.dialog.open(_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmDialog"], {
+            width: '250px',
+            data: { name: 'roberth', animal: 'cat' }
+        });
+        this.dialogRef.afterClosed().subscribe(function (acept) {
+            if (acept) {
+                var response = _this.dataProvider.deleteArticle(id);
+                response.subscribe(function (data) {
+                    if (data.success) {
+                        _this.articles = _this.articles.filter(function (item) { return item._id !== id; });
+                    }
+                });
+            }
         });
     };
     AppComponent.prototype.openLink = function (uri) {
@@ -380,13 +398,23 @@ var AppComponent = /** @class */ (function () {
         }
         this.deleteAction = false;
     };
+    AppComponent.prototype.openDialog = function () {
+        var dialogRef = this.dialog.open(_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmDialog"], {
+            width: '350px',
+            data: { name: 'roberth', animal: 'cat' }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed', result);
+        });
+    };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [_app_service__WEBPACK_IMPORTED_MODULE_1__["AppService"]])
+        __metadata("design:paramtypes", [_app_service__WEBPACK_IMPORTED_MODULE_1__["AppService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -410,15 +438,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.service */ "./src/app/app.service.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _date_format_pipe__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./date-format.pipe */ "./src/app/date-format.pipe.ts");
+/* harmony import */ var _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../dialog/dialog.component */ "./src/dialog/dialog.component.ts");
+/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.service */ "./src/app/app.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _date_format_pipe__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./date-format.pipe */ "./src/app/date-format.pipe.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -434,7 +464,8 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
-                _date_format_pipe__WEBPACK_IMPORTED_MODULE_7__["DateFormatPipe"]
+                _date_format_pipe__WEBPACK_IMPORTED_MODULE_8__["DateFormatPipe"],
+                _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmDialog"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -443,10 +474,12 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatListModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"]
             ],
-            providers: [_app_service__WEBPACK_IMPORTED_MODULE_5__["AppService"]],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+            providers: [_app_service__WEBPACK_IMPORTED_MODULE_6__["AppService"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]],
+            entryComponents: [_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmDialog"]]
         })
     ], AppModule);
     return AppModule;
@@ -479,20 +512,19 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+var apiEndPoint = 'http://localhost:3000/api/articles';
 var AppService = /** @class */ (function () {
     function AppService(http) {
         this.http = http;
     }
-    AppService.prototype.fetchData = function () {
-        return this.http.get('http://localhost:3000/api/articles');
+    AppService.prototype.getArticles = function () {
+        return this.http.get(apiEndPoint);
     };
     AppService.prototype.deleteArticle = function (id) {
-        return this.http.delete("http://localhost:3000/api/articles/" + id);
+        return this.http.delete(apiEndPoint + "/" + id);
     };
     AppService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        }),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], AppService);
     return AppService;
@@ -535,6 +567,66 @@ var DateFormatPipe = /** @class */ (function () {
         })
     ], DateFormatPipe);
     return DateFormatPipe;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/dialog/dialog.component.html":
+/*!******************************************!*\
+  !*** ./src/dialog/dialog.component.html ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1 mat-dialog-title>Deleting Article</h1>\n<div mat-dialog-content>\n  <h5>Are you sure?</h5>\n</div>\n<div mat-dialog-actions>\n  <button mat-button (click)=\"onNoClick()\">Cancel</button>\n  <button mat-button [mat-dialog-close]=\"true\" cdkFocusInitial>Acept</button>\n</div>"
+
+/***/ }),
+
+/***/ "./src/dialog/dialog.component.ts":
+/*!****************************************!*\
+  !*** ./src/dialog/dialog.component.ts ***!
+  \****************************************/
+/*! exports provided: ConfirmDialog */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmDialog", function() { return ConfirmDialog; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+var ConfirmDialog = /** @class */ (function () {
+    function ConfirmDialog(dialogRef, data) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+    }
+    ConfirmDialog.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    ConfirmDialog = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'confirm-dialog',
+            template: __webpack_require__(/*! ./dialog.component.html */ "./src/dialog/dialog.component.html"),
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object])
+    ], ConfirmDialog);
+    return ConfirmDialog;
 }());
 
 
@@ -604,7 +696,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/netred/projects/reigndesign/src/client/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/roberth/projects/reigndesign/src/client/src/main.ts */"./src/main.ts");
 
 
 /***/ })
