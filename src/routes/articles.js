@@ -1,60 +1,63 @@
 const router = require('express').Router();
 const mongojs = require('mongojs');
-const https = require('https');
 
 const db = mongojs('mean-db', ['articles']);
 db.on('error', function (err) {
-  console.log('database error');
+  console.log('database error', err);
 });
 
-https.get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs', (resp) => {
-  let data = '';
+db.on('connect', function () {
+	console.log('database connected')
+})
 
-  resp.on('data', (chunk) => {
-    data += chunk;
-  });
+const getArticles = () => {
+  console.log('getting list of articles...');
+  let response = {
+    error: false,
+    result: []
+  }
 
-  // The whole response has been received. Print out the result.
-  resp.on('end', () => {
-    db.articles.remove({});
-    var saveItem = false;
-    var newArticle = {};
-    var articles = JSON.parse(data).hits;
+  return new Promise( resolve => {
+    db.articles.find((err, articles) => {
+      response = {
+        error: err,
+        result: articles
+      };
 
-    articles.forEach(function (item) {
-      saveItem = (item.story_title !== null || item.title !== null);
-
-      if (saveItem) {
-        newArticle = {
-          title: (item.story_title !== null) ? item.story_title : item.title,
-          created_at: item.created_at_i,
-          author: item.author
-        };
-
-        db.articles.save(newArticle, (err, article) => {
-          if (err) return next(err);
-        });
-      }
+      resolve(response);
     });
-  });
-}).on("error", (err) => {
-  console.log("Error: " + err.message);
-});
+  })
+}
 
 router.get('/articles', (req, res, next) => {
-  db.articles.find((err, articles) => {
-    if (err) return next(err);
-    res.json(articles);
+  getArticles().then((data) => {
+    const articlesCount = data.result.length;
+    res.json(data);
   });
 });
 
-router.get('/articles/:id', (req, res, next) => {
-  db.articles.findOne({_id: req.params.id}, (err, article) => {
-    if (err) return next(err);
-    res.json(article);
-  });
-});
+router.delete('/articles/:id', (req, res, next) => {
+  const id = req.params.id || null;
+  var responseInfo = {
+    success: true,
+    result: null
+  }
 
+  if (id !== null) {
+    db.articles.remove({_id: mongojs.ObjectId(id)}, true, (err, result) => {
+      if (err) {
+        responseInfo.success = false;
+
+        return next(err);
+      }
+      responseInfo.result = result;
+    });
+  } else {
+    responseInfo.success = false;
+  }
+
+  res.json(responseInfo);
+});
 
 router.post('/articles', (req, res, next) => {
   const article = req.body
